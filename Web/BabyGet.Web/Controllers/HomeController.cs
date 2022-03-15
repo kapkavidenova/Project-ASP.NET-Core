@@ -1,31 +1,23 @@
 ﻿namespace BabyGet.Web.Controllers
 {
     using System.Diagnostics;
-    using System.Linq;
 
-    using BabyGet.Data;
+    using BabyGet.Services.Data;
     using BabyGet.Web.ViewModels;
-    using BabyGet.Web.ViewModels.Home;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : BaseController
     {
-        private readonly ApplicationDbContext data;
+        private readonly IGetCountsService countsService;
 
-        public HomeController(ApplicationDbContext data)
+        public HomeController(IGetCountsService countsService)
         {
-            this.data = data;
+            this.countsService = countsService;
         }
 
         public IActionResult Index()
         {
-            var viewModel = new IndexViewModel
-            {
-                ItemsCount = this.data.Items.Count(),
-                CategoriesCount = this.data.Categories.Count(),
-
-            };
-
+            var viewModel = this.countsService.GetCounts();
             return this.View(viewModel);
         }
 
