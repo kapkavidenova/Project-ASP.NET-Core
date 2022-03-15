@@ -22,9 +22,11 @@
             var viewModel = new IndexViewModel
             {
                 ItemsCount = this.data.Items.Count(),
+                CategoriesCount = this.data.Categories.Count(),
+
             };
 
-            return this.View();
+            return this.View(viewModel);
         }
 
         public IActionResult Privacy()
