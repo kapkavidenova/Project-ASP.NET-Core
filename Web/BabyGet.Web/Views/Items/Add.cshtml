@@ -1,0 +1,45 @@
+﻿@model BabyGet.Web.ViewModels.Items.AddItemInputModel
+@{
+    this.ViewData["Title"] = "Add new item";
+     var categoryItems = this.Model.CategoriesItems.Select(x => new SelectListItem(x.Value, x.Key));
+}
+
+<form method="post" class="col-md-6 offset-md-3>
+  enctype="multipart/form-data">
+   <h1>@this.ViewData["Title"] </h1>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+       <label asp-for="Name"></label>
+       <input asp-for="Name" class="form-control" />
+       <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+     <div class="form-group">
+       <label asp-for="Description"></label>
+       <textarea asp-for="Description" class="form-control rows="5"></textarea>
+       <span asp-validation-for="Description" class="text-danger"></span>
+     </div>
+    <div class="form-group">
+       <label asp-for="ForWeight"></label>
+       <input asp-for="ForWeight" class="form-control" />
+       <span asp-validation-for="ForWeight" class="text-danger"></span>
+    </div>
+     <div asp-validation-summary="All"></div>
+    <div class="form-group">
+       <label asp-for="Model"></label>
+       <input asp-for="Model" class="form-control" />
+       <span asp-validation-for="Model" class="text-danger"></span>
+    </div>
+     <div asp-validation-summary="All"></div>
+    <div class="form-group">
+       <label asp-for="Dimensions"></label>
+       <input asp-for="Dimensions" class="form-control" />
+       <span asp-validation-for="Dimensions" class="text-danger"></span>
+    </div>
+     <div asp-validation-summary="All"></div>  
+      <div class="form-group">
+        <label asp-for="CategoryId"></label>
+        @*<vc:CategoriesDropDown name="CategoryId"></vc:CategoriesDropDown>*@
+       <select asp-for="CategoryId" class="form-control" asp-items="categoryItems"></select>    
+    </div>
+    <input type="submit" class="btn btn-primary" />
+</form>
