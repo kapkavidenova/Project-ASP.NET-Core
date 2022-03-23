@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace BabyGet.Services.Data
+﻿namespace BabyGet.Services.Data
 {
+    using System.Collections.Generic;
+
     public interface ICategoriesService
     {
         IEnumerable<KeyValuePair<string, string>> GetAllCategories();

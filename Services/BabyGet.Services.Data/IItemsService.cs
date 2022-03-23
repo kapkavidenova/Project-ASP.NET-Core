@@ -1,10 +1,11 @@
 ﻿namespace BabyGet.Services.Data
 {
-    using BabyGet.Web.ViewModels.Items;
     using System.Threading.Tasks;
+
+    using BabyGet.Web.ViewModels.Items;
 
     public interface IItemsService
     {
-        Task Add(AddItemInputModel input);
+        Task AddAsync(AddItemInputModel input);
     }
 }

@@ -15,7 +15,7 @@
             this.itemsRepository = itemsRepository;
         }
 
-        public async Task Add(AddItemInputModel input)
+        public async Task AddAsync(AddItemInputModel input)
         {
             var item = new Item
             {

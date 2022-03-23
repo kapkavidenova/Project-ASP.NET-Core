@@ -4,13 +4,17 @@
     this.ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center row">
-    <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>   
-    <div class="col-md-4">
-        <p>We have:</p>
-        <ul class="list-group">
-            <li class="list-group-item bg-info">Recipes: @Model.ItemsCount</li>
-            <li class="list-group-item bg-light">Categories: @Model.CategoriesCount</li>           
-        </ul>
+<div class="text-center">
+    <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
+    <div class="col-md-6 offset-md-3">
+   <p>We have:</p>
+    <ul class="list-group">
+        <li class="list-group-item bg-info">Items: @Model.ItemsCount</li>
+        <li class="list-group-item bg-light">Categories: @Model.CategoriesCount</li>
+
+    </ul>
     </div>
+   @* <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
 </div>
+
+

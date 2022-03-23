@@ -3,8 +3,6 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using static System.Net.Mime.MediaTypeNames;
-
     public class AddItemInputModel
     {
         [Required]

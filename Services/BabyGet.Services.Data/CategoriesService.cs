@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+
     using BabyGet.Data.Common.Repositories;
     using BabyGet.Data.Models;
 
@@ -19,7 +20,7 @@
            return this.categoriesRepository.AllAsNoTracking().Select(c => new
             {
                 c.Id, c.Name,
-            }).ToList().Select(x => new KeyValuePair<string,string>(x.Id.ToString(),x.Name.ToString()));
+            }).ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
         }
     }
 }

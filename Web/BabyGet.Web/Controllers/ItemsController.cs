@@ -1,16 +1,21 @@
 ﻿namespace BabyGet.Web.Controllers
 {
+    using System.Threading.Tasks;
+
     using BabyGet.Services.Data;
     using BabyGet.Web.ViewModels.Items;
     using Microsoft.AspNetCore.Mvc;
 
     public class ItemsController : Controller
     {
-        private ICategoriesService categoriesService;
+        private readonly ICategoriesService categoriesService;
+        private readonly IItemsService itemsService;
 
-        public ItemsController(ICategoriesService categoriesService)
+
+        public ItemsController(ICategoriesService categoriesService, IItemsService itemsService)
         {
             this.categoriesService = categoriesService;
+            this.itemsService = itemsService;
         }
 
         public IActionResult Add()
@@ -21,7 +26,7 @@
         }
 
         [HttpPost]
-        public IActionResult Add(AddItemInputModel input)
+        public async Task<IActionResult> Add(AddItemInputModel input)
         {
             if (!this.ModelState.IsValid)
             {
@@ -29,6 +34,7 @@
                 return this.View(input);
             }
 
+            await this.itemsService.AddAsync(input);
             return this.Redirect("/");
         }
     }

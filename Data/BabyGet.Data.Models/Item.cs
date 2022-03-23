@@ -29,11 +29,10 @@
 
         public Category Category { get; set; }
 
-        public int OfferId { get; set; }
+        public int? OfferId { get; set; }
 
         public Offer Offer { get; set; }
 
-        [Required]
         public string AddedByUserId { get; set; }
 
         public ApplicationUser AddedByUser { get; set; }

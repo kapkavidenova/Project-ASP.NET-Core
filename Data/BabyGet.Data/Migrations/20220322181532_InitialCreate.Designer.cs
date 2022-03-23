@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BabyGet.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220314145541_InitialCreate")]
+    [Migration("20220322181532_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -230,7 +230,6 @@ namespace BabyGet.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AddedByUserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("CategoryId")
@@ -474,9 +473,7 @@ namespace BabyGet.Data.Migrations
                 {
                     b.HasOne("BabyGet.Data.Models.ApplicationUser", "AddedByUser")
                         .WithMany()
-                        .HasForeignKey("AddedByUserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("AddedByUserId");
 
                     b.HasOne("BabyGet.Data.Models.Category", "Category")
                         .WithMany("Items")
