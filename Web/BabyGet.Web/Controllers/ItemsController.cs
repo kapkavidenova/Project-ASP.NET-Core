@@ -32,7 +32,7 @@
         }
 
         [HttpPost]
-        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        [Authorize]
         public async Task<IActionResult> Add(AddItemInputModel input)
         {
             if (!this.ModelState.IsValid)
@@ -49,7 +49,12 @@
 
         public IActionResult All(int id)
         {
-            return this.View();
+            var viewModel = new ItemsListViewModel
+            {
+                PageNumber = id,
+                Items = this.itemsService.GetAll(id, 9),
+            };
+            return this.View(viewModel);
         }
     }
 }

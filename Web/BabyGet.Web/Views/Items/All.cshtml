@@ -1,0 +1,35 @@
+﻿@model  BabyGet.Web.ViewModels.Items.ItemsListViewModel
+@{
+    this.ViewData["Title"] = "All Items, Page...";
+}
+
+<h1>@this.ViewData["Title"]</h1>
+<hr />
+<div class="row">
+@foreach(var item in this.Model.Items )
+{
+    <div class="media col-md-4">
+  <img src="@item.ImageUrl" class="mr-3 img-responsive">
+  <div class="media-body">
+    <h5 class="mt-0">@item.Name</h5>
+   @item.CategoryName
+  </div>
+</div>
+}
+</div>
+<hr/>
+<nav aria-label="...">
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+      <span class="page-link">Previous</span>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item active" aria-current="page">
+      <span class="page-link">2</span>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
