@@ -15,7 +15,7 @@
             this.itemsRepository = itemsRepository;
         }
 
-        public async Task AddAsync(AddItemInputModel input)
+        public async Task AddAsync(AddItemInputModel input,string userId)
         {
             var item = new Item
             {
@@ -25,6 +25,7 @@
                 Dimensions = input.Dimensions,
                 Description = input.Description,
                 ForWeight = input.ForWeight,
+                AddedByUserId = userId,
             };
 
             await this.itemsRepository.AddAsync(item);

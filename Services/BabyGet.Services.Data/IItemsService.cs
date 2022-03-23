@@ -6,6 +6,6 @@
 
     public interface IItemsService
     {
-        Task AddAsync(AddItemInputModel input);
+        Task AddAsync(AddItemInputModel input,string userId);
     }
 }
