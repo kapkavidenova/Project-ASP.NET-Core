@@ -20,7 +20,9 @@
            return this.categoriesRepository.AllAsNoTracking().Select(c => new
             {
                 c.Id, c.Name,
-            }).ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
+            })
+                .OrderBy(c => c.Name)
+                .ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
         }
     }
 }

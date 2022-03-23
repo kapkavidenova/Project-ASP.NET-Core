@@ -8,7 +8,7 @@
 
     public class ItemsService : IItemsService
     {
-        private IDeletableEntityRepository<Item> itemsRepository;
+        private readonly IDeletableEntityRepository<Item> itemsRepository;
 
         public ItemsService(IDeletableEntityRepository<Item> itemsRepository)
         {
