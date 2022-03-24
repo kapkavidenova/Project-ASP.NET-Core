@@ -22,6 +22,7 @@
 
         public string Dimensions { get; set; }
 
+        // public string ImageUrl { get; set; }
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
 

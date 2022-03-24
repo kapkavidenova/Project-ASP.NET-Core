@@ -47,12 +47,15 @@
             return this.Redirect("/");
         }
 
-        public IActionResult All(int id)
+        public IActionResult All(int id = 1)
         {
+            const int ItemsPerPage = 3;
             var viewModel = new ItemsListViewModel
             {
+                ItemsPerPage = ItemsPerPage,
                 PageNumber = id,
-                Items = this.itemsService.GetAll(id, 9),
+                ItemsCount = this.itemsService.GetCount(),
+                Items = this.itemsService.GetAll(id, ItemsPerPage),
             };
             return this.View(viewModel);
         }

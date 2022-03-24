@@ -4,6 +4,7 @@ using BabyGet.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BabyGet.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220324103130_Url")]
+    partial class Url
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -257,9 +259,6 @@ namespace BabyGet.Data.Migrations
                     b.Property<int>("ForWeight")
                         .HasColumnType("int");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -471,7 +470,7 @@ namespace BabyGet.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("BabyGet.Data.Models.Item", "Item")
-                        .WithMany()
+                        .WithMany("Images")
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -567,6 +566,11 @@ namespace BabyGet.Data.Migrations
             modelBuilder.Entity("BabyGet.Data.Models.Category", b =>
                 {
                     b.Navigation("Items");
+                });
+
+            modelBuilder.Entity("BabyGet.Data.Models.Item", b =>
+                {
+                    b.Navigation("Images");
                 });
 #pragma warning restore 612, 618
         }

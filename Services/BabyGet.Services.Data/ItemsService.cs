@@ -35,25 +35,29 @@
             await this.itemsRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<ItemInListViewModel> GetAll(int page, int itemsPerPage = 1)
+        public IEnumerable<ItemInListViewModel> GetAll(int page, int itemsPerPage = 3)
         {
             var items = this.itemsRepository.AllAsNoTracking()
                 .OrderByDescending(i => i.Id)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
-                .To<ItemInListViewModel>()
-
-                // .Select(i => new ItemInListViewModel
-                // {
-                //    Id = i.Id,
-                //    Name = i.Name,
-                //    CategoryName = i.Category.Name,
-                //    CategoryId = i.CategoryId,
-                //    ImageUrl = "images/items/" + i.Images.FirstOrDefault().Id + "." + i.Images.FirstOrDefault().Extension,
-               // })
+               // .To<ItemInListViewModel>()
+                 .Select(i => new ItemInListViewModel
+                 {
+                     Id = i.Id,
+                     Name = i.Name,
+                     CategoryName = i.Category.Name,
+                     CategoryId = i.CategoryId,
+                     ImageUrl = "images/items/" + i.Images.FirstOrDefault().Id + "." + i.Images.FirstOrDefault().Extension,
+                 })
                .ToList();
 
             return items;
+        }
+
+        public int GetCount()
+        {
+            return this.itemsRepository.All().Count();
         }
     }
 }

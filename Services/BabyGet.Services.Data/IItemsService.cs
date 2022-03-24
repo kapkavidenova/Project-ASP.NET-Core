@@ -9,6 +9,9 @@
     {
         Task AddAsync(AddItemInputModel input,string userId);
 
-        IEnumerable<ItemInListViewModel> GetAll(int page, int itemsPerPage = 9);
+        IEnumerable<ItemInListViewModel> GetAll(int page, int itemsPerPage = 3);
+
+        int GetCount();
+
     }
 }
