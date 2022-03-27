@@ -1,25 +1,29 @@
 ﻿namespace BabyGet.Web.Controllers
 {
-    using System.Threading.Tasks;
-    using BabyGet.Common;
     using BabyGet.Data.Models;
     using BabyGet.Services.Data;
     using BabyGet.Web.ViewModels.Items;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using System;
+    using System.Threading.Tasks;
 
     public class ItemsController : Controller
     {
         private readonly ICategoriesService categoriesService;
         private readonly IItemsService itemsService;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IWebHostEnvironment environment;
 
-        public ItemsController(ICategoriesService categoriesService, IItemsService itemsService,UserManager<ApplicationUser> userManager)
+        public ItemsController(ICategoriesService categoriesService, IItemsService itemsService,UserManager<ApplicationUser> userManager,
+             IWebHostEnvironment environment)
         {
             this.categoriesService = categoriesService;
             this.itemsService = itemsService;
             this.userManager = userManager;
+            this.environment = environment;
         }
 
         [Authorize]
@@ -43,7 +47,18 @@
 
             // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var user = await this.userManager.GetUserAsync(this.User);
-            await this.itemsService.AddAsync(input, user.Id);
+
+            try
+            {
+                await this.itemsService.AddAsync(input, user.Id, $"{this.environment.WebRootPath}/images");
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                input.CategoriesItems = this.categoriesService.GetAllCategories();
+                return this.View(input);
+            }
+
             return this.Redirect("/");
         }
 

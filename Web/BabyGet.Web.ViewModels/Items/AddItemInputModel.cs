@@ -3,6 +3,8 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using Microsoft.AspNetCore.Http;
+
     public class AddItemInputModel
     {
         [Required]
@@ -16,15 +18,15 @@
         [Range(0, 25)]
         public int ForWeight { get; set; }
 
-        [Required]
         [MaxLength(20)]
         public string Model { get; set; }
 
         public string Dimensions { get; set; }
 
-        // public string ImageUrl { get; set; }
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
+
+        public IEnumerable<IFormFile> Images { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> CategoriesItems { get; set; }
     }

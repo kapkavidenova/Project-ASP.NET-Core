@@ -7,7 +7,7 @@
 
     public interface IItemsService
     {
-        Task AddAsync(AddItemInputModel input,string userId);
+        Task AddAsync(AddItemInputModel input, string userId, string imagePath);
 
         IEnumerable<ItemInListViewModel> GetAll(int page, int itemsPerPage = 3);
 
