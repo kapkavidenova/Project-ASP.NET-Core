@@ -1,5 +1,8 @@
 ﻿namespace BabyGet.Web.Controllers
 {
+    using System;
+    using System.Threading.Tasks;
+
     using BabyGet.Data.Models;
     using BabyGet.Services.Data;
     using BabyGet.Web.ViewModels.Items;
@@ -7,8 +10,6 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using System;
-    using System.Threading.Tasks;
 
     public class ItemsController : Controller
     {
@@ -17,7 +18,7 @@
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IWebHostEnvironment environment;
 
-        public ItemsController(ICategoriesService categoriesService, IItemsService itemsService,UserManager<ApplicationUser> userManager,
+        public ItemsController(ICategoriesService categoriesService, IItemsService itemsService, UserManager<ApplicationUser> userManager,
              IWebHostEnvironment environment)
         {
             this.categoriesService = categoriesService;
@@ -64,6 +65,11 @@
 
         public IActionResult All(int id = 1)
         {
+            if (id <= 0)
+            {
+                return this.NotFound();
+            }
+
             const int ItemsPerPage = 3;
             var viewModel = new ItemsListViewModel
             {

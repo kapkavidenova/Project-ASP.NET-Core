@@ -20,7 +20,7 @@
 
         public async Task<IActionResult> Index()
         {
-            return this.View(await this.dataRepository.All().ToListAsync());
+            return this.View(await this.dataRepository.AllWithDeleted().ToListAsync());
         }
 
         public async Task<IActionResult> Details(int? id)
