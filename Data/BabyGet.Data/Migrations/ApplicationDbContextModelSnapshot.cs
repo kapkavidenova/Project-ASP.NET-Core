@@ -17,7 +17,7 @@ namespace BabyGet.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.1")
+                .HasAnnotation("ProductVersion", "6.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -187,11 +187,8 @@ namespace BabyGet.Data.Migrations
 
             modelBuilder.Entity("BabyGet.Data.Models.Image", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("AddedByUserId")
                         .IsRequired()
@@ -214,6 +211,9 @@ namespace BabyGet.Data.Migrations
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("RemoteUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -257,9 +257,6 @@ namespace BabyGet.Data.Migrations
                     b.Property<int>("ForWeight")
                         .HasColumnType("int");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -278,6 +275,10 @@ namespace BabyGet.Data.Migrations
 
                     b.Property<int?>("OfferId")
                         .HasColumnType("int");
+
+                    b.Property<string>("OriginalUrl")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -471,7 +472,7 @@ namespace BabyGet.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("BabyGet.Data.Models.Item", "Item")
-                        .WithMany()
+                        .WithMany("Images")
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -567,6 +568,11 @@ namespace BabyGet.Data.Migrations
             modelBuilder.Entity("BabyGet.Data.Models.Category", b =>
                 {
                     b.Navigation("Items");
+                });
+
+            modelBuilder.Entity("BabyGet.Data.Models.Item", b =>
+                {
+                    b.Navigation("Images");
                 });
 #pragma warning restore 612, 618
         }

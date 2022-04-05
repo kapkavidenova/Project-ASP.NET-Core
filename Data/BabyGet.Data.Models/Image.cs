@@ -5,13 +5,18 @@
 
     using BabyGet.Data.Common.Models;
 
-    public class Image : BaseDeletableModel<int>
+    public class Image : BaseDeletableModel<string>
     {
-        // public int Id { get; set; }
-        [Required]
+        public Image()
+        {
+            this.Id = Guid.NewGuid().ToString();
+        }
+
         public int ItemId { get; set; }
 
         public Item Item { get; set; }
+
+        public string RemoteUrl { get; set; }
 
         public string Extension { get; set; }
 

@@ -7,7 +7,6 @@
     using BabyGet.Data.Models;
     using BabyGet.Services.Data;
     using BabyGet.Web.ViewModels.Settings;
-
     using Microsoft.AspNetCore.Mvc;
 
     public class SettingsController : BaseController

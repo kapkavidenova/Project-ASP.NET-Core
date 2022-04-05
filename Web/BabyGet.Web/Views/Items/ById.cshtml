@@ -1,11 +1,28 @@
-﻿@model BabyGet.Web.ViewModels.Items.AddItemInputModel
-@{
-    this.ViewData["Title"] = "Add new item";
-     var categoryItems = this.Model.CategoriesItems.Select(x => new SelectListItem(x.Value, x.Key));
-}
+﻿@using BabyGet.Common
+@model BabyGet.Web.ViewModels.Items.SingleItemInputModel
 
-<form method="post" class="col-md-6 offset-md-3" 
-        enctype="multipart/form-data">
+
+
+                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                {
+                    <div>
+                        <ul>
+                    <li>
+                        <a asp-controller="Items" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">Edit</a>
+                    </li>
+                    @*<li>
+                        <form method="post" asp-action="Delete" id="deleteForm" asp-route-id="@Model.Id">
+                        </form>
+                        <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
+                    </li>*@
+                    </ul>
+                    </div>
+                }
+
+    @{
+        this.ViewData["Title"] = Model.Name; 
+     }
+
    <h1>@this.ViewData["Title"] </h1>
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
@@ -33,16 +50,5 @@
        <input asp-for="Dimensions" class="form-control" />
        <span asp-validation-for="Dimensions" class="text-danger"></span>
     </div>
-     <div class="form-group">
-        <label asp-for="CategoryId"></label>
-        @*<vc:CategoriesDropDown name="CategoryId"></vc:CategoriesDropDown>*@
-       <select asp-for="CategoryId" class="form-control" asp-items="categoryItems"></select>
-       <span asp-validation-for="CategoryId" class="text-danger"></span>
-    </div>
-     <div class="form-group">
-       <label asp-for="Images"></label>
-       <input asp-for="Images" class="form-control" />
-       <span asp-validation-for="Images" class="text-danger"></span>
-    </div>
-    <input type="submit" class="btn btn-primary" />
-</form>
+
+

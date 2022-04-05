@@ -1,9 +1,8 @@
 ﻿namespace BabyGet.Web.ViewModels.Settings
 {
+    using AutoMapper;
     using BabyGet.Data.Models;
     using BabyGet.Services.Mapping;
-
-    using AutoMapper;
 
     public class SettingViewModel : IMapFrom<Setting>, IHaveCustomMappings
     {

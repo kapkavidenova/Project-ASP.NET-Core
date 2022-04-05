@@ -1,10 +1,11 @@
-﻿using BabyGet.Data.Models;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace BabyGet.Data.Seeding
+﻿namespace BabyGet.Data.Seeding
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using BabyGet.Data.Models;
+
     public class CategoriesSeeder : ISeeder
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)

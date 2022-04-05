@@ -3,6 +3,7 @@
     using System;
     using System.Threading.Tasks;
 
+    using BabyGet.Common;
     using BabyGet.Data.Models;
     using BabyGet.Services.Data;
     using BabyGet.Web.ViewModels.Items;
@@ -27,12 +28,36 @@
             this.environment = environment;
         }
 
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public IActionResult Edit(int id)
+        {
+            var inputModel = this.itemsService.GetById<EditItemInputModel>(id);
+            inputModel.CategoriesItems = this.categoriesService.GetAllCategories();
+            return this.View(inputModel);
+        }
+
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, EditItemInputModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                input.CategoriesItems = this.categoriesService.GetAllCategories();
+                return this.View(input);
+            }
+
+            await this.itemsService.UpdateAsync(id, input);
+
+            return this.RedirectToAction(nameof(this.ById), new { id });
+        }
+
         [Authorize]
         public IActionResult Add()
         {
-            // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var viewModel = new AddItemInputModel();
-            viewModel.CategoriesItems = this.categoriesService.GetAllCategories();
+            var viewModel = new AddItemInputModel
+            {
+                CategoriesItems = this.categoriesService.GetAllCategories(),
+            };
             return this.View(viewModel);
         }
 
@@ -49,6 +74,7 @@
             // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var user = await this.userManager.GetUserAsync(this.User);
 
+            // await this.itemsService.AddAsync(input, user.Id);
             try
             {
                 await this.itemsService.AddAsync(input, user.Id, $"{this.environment.WebRootPath}/images");
@@ -70,15 +96,21 @@
                 return this.NotFound();
             }
 
-            const int ItemsPerPage = 3;
+            const int ItemsPerPage = 6;
             var viewModel = new ItemsListViewModel
             {
                 ItemsPerPage = ItemsPerPage,
                 PageNumber = id,
                 ItemsCount = this.itemsService.GetCount(),
-                Items = this.itemsService.GetAll(id, ItemsPerPage),
+                Items = this.itemsService.GetAll<ItemInListViewModel>(id, ItemsPerPage),
             };
             return this.View(viewModel);
+        }
+
+        public IActionResult ById(int id)
+        {
+            var item = this.itemsService.GetById<SingleItemInputModel>(id);
+            return this.View(item);
         }
     }
 }

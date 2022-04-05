@@ -24,7 +24,9 @@
 
         public string Dimensions { get; set; }
 
-        [Required]
+        [MaxLength(100)]
+        public string OriginalUrl { get; set; }
+
         public int CategoryId { get; set; }
 
         public Category Category { get; set; }

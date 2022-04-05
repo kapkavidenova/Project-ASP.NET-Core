@@ -9,9 +9,14 @@
     {
         Task AddAsync(AddItemInputModel input, string userId, string imagePath);
 
-        IEnumerable<ItemInListViewModel> GetAll(int page, int itemsPerPage = 3);
+        IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 6);
+
+        IEnumerable<T> GetRandom<T>(int count);
 
         int GetCount();
 
+        T GetById<T>(int id);
+
+        Task UpdateAsync(int id, EditItemInputModel input);
     }
 }

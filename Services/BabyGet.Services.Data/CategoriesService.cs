@@ -8,7 +8,7 @@
 
     public class CategoriesService : ICategoriesService
     {
-        private IRepository<Category> categoriesRepository;
+        private readonly IRepository<Category> categoriesRepository;
 
         public CategoriesService(IRepository<Category> categoriesRepository)
         {

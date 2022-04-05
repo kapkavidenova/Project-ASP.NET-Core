@@ -1,6 +1,4 @@
-﻿
-
-namespace BabyGet.Services.Data
+﻿namespace BabyGet.Services.Data
 {
     using BabyGet.Web.ViewModels.Home;
 
