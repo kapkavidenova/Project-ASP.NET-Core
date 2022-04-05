@@ -119,5 +119,12 @@
             items.CategoryId = input.CategoryId;
             await this.itemsRepository.SaveChangesAsync();
         }
+
+        public async Task DeleteAsync(int id)
+        {
+            var item = this.itemsRepository.All().FirstOrDefault(i => i.Id == id);
+            this.itemsRepository.Delete(item);
+            await this.itemsRepository.SaveChangesAsync();
+        }
     }
 }

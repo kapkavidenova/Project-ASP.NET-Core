@@ -18,5 +18,7 @@
         T GetById<T>(int id);
 
         Task UpdateAsync(int id, EditItemInputModel input);
+
+        Task DeleteAsync(int id);
     }
 }

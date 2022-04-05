@@ -1,23 +1,22 @@
 ﻿@using BabyGet.Common
 @model BabyGet.Web.ViewModels.Items.SingleItemInputModel
 
-
-
-                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-                {
-                    <div>
-                        <ul>
-                    <li>
-                        <a asp-controller="Items" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">Edit</a>
-                    </li>
-                    @*<li>
-                        <form method="post" asp-action="Delete" id="deleteForm" asp-route-id="@Model.Id">
-                        </form>
-                        <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
-                    </li>*@
-                    </ul>
-                    </div>
-                }
+ <div>
+    @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+    {
+            <ul>
+        <li>
+            <a asp-controller="Items" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">Edit</a>
+        </li>
+        <li>
+            <form method="post" asp-action="Delete" id="deleteForm" asp-route-id="@Model.Id">
+            </form>
+            <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
+        </li>
+        </ul>
+         }
+</div>
+   
 
     @{
         this.ViewData["Title"] = Model.Name; 
@@ -51,4 +50,22 @@
        <span asp-validation-for="Dimensions" class="text-danger"></span>
     </div>
 
-
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" onclick="deleteForm.submit()">Yes</button>
+        <button type="button" class="btn btn-secondary"  data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>

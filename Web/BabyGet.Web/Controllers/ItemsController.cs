@@ -112,5 +112,13 @@
             var item = this.itemsService.GetById<SingleItemInputModel>(id);
             return this.View(item);
         }
+
+        [HttpPost]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.itemsService.DeleteAsync(id);
+            return this.RedirectToAction(nameof(this.All));
+        }
     }
 }
