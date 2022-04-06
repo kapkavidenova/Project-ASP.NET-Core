@@ -1,0 +1,50 @@
+﻿@model BabyGet.Web.ViewModels.Faq.FaqListInputModel
+@{
+    this.ViewData["Title"] = "Frequently asked questions (FAQ)";
+}
+
+<div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          1. Is the equipment new?
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+         Answer: All of our equipment is either new or in excellent condition.We pride ourselves on the quality and cleanliness of our merchandise. Each item is thoroughly inspected before each rental.
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+           2. Will you install car sseats?
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+               Answer: We cannot install car seats for liability purposes. However, we are more than happy to provide the instruction booklet for you, should you need it. Most guests find that our car seats are easy to install.
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+           3. Is there a delivery charge?
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+        Answer: Yes, there is a one-time delivery charge which includes delivery and pick-up. The amount of the delivery fee varies by location. Please contact the local operator for more information.
+      </div>
+    </div>
+  </div>
+</div>

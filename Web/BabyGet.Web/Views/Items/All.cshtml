@@ -11,7 +11,7 @@
     <div class="media col-md-4">
   <img src="@item.ImageUrl" width="100" class="mr-3 img-responsive">
   <div class="media-body">
-    <h5 class="mt-0">@item.Name</h5>
+    <h5 class="mt-0"><a asp-acton="ById" asp-route-id="@item.Id">@item.Name</a></h5>
    @item.CategoryName
   </div>
 </div>

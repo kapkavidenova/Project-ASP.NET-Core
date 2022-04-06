@@ -10,6 +10,8 @@
     <link href="~/lib/fontawesome/css/all.css" rel="stylesheet" asp-append-version="true" />
     <link href="~/lib/datatables/media/css/jquery.dataTables.min.css" asp-append-version="true" rel="stylesheet" />
     <link href="~/css/site.min.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/faq.css" rel="stylesheet" asp-append-version="true" />
+
 </head>
 <body>
     <header>
@@ -44,12 +46,10 @@
                                 <a class="nav-link text-dark" asp-area="Administration" asp-controller="Items" asp-action="Index">Items Admin</a>
                             </li>
                              }
-                            @*   @if(this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-                             {
                                 <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Administration" asp-controller="Items" asp-action="Add">Add Item</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Faqs" asp-action="GetAll">FAQ</a>
                                 </li>
-                             }*@
+                           
                         </ul>
                     </div>
             </div>
