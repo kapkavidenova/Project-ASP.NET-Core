@@ -6,5 +6,6 @@
     public class EditItemInputModel : BaseItemInputModel, IMapFrom<Item>
     {
         public int Id { get; set; }
+
     }
 }

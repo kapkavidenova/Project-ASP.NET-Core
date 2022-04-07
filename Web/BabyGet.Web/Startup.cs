@@ -10,6 +10,8 @@
     using BabyGet.Data.Seeding;
     using BabyGet.Services.Data;
     using BabyGet.Services.Data.Models;
+    using BabyGet.Services.Data.Offer;
+    using BabyGet.Services.Data.Offers;
     using BabyGet.Services.Mapping;
     using BabyGet.Services.Messaging;
     using BabyGet.Web.ViewModels;
@@ -68,6 +70,7 @@
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<IGetCountsService, GetCountsService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
+            services.AddTransient<IOffersService, OffersService>();
             services.AddTransient<IFaqsService, FaqsService>();
             services.AddTransient<IItemsService, ItemsService>();
         }

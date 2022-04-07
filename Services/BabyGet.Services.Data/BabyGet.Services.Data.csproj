@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\BabyGet.Data.Common\BabyGet.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\BabyGet.Data.Models\BabyGet.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\BabyGet.Data\BabyGet.Data.csproj" />
     <ProjectReference Include="..\..\Web\BabyGet.Web.ViewModels\BabyGet.Web.ViewModels.csproj" />
     <ProjectReference Include="..\BabyGet.Services.Mapping\BabyGet.Services.Mapping.csproj" />
   </ItemGroup>

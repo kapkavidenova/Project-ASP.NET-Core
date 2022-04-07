@@ -16,6 +16,8 @@
 
         public string CategoryName { get; set; }
 
+        public int? OfferId { get; set; }
+
         public string ImageUrl { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)

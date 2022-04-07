@@ -17,6 +17,8 @@
 
         public int CategoryId { get; set; }
 
+        public int? OfferId { get; set; }
+
         public IEnumerable<KeyValuePair<string, string>> CategoriesItems { get; set; }
     }
 }

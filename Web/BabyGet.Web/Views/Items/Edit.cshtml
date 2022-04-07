@@ -26,6 +26,11 @@
         <select asp-for="CategoryId" asp-items="categoryItems" class="form-control"></select>
         <span asp-validation-for="CategoryId" class="text-danger"></span>
     </div>
+     <div class="form-group">
+        <label asp-for="OfferId"></label>
+        <select asp-for="OfferId" asp-items="categoryItems" class="form-control"></select>
+        <span asp-validation-for="OfferId" class="text-danger"></span>
+    </div>
     <hr />
     <input type="hidden" asp-for="Id" />
 </form>

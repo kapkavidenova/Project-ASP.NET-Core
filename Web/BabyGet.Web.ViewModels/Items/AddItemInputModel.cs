@@ -21,6 +21,8 @@
         [MaxLength(20)]
         public string Model { get; set; }
 
+        public int? OfferId { get; set; }
+
         public string Dimensions { get; set; }
 
         [Display(Name = "Category")]
